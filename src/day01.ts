@@ -1,6 +1,6 @@
 import { loadFileByLine } from "./utils"
 
-const lines = loadFileByLine('day01')
+const lines = loadFileByLine('day01_full')
 
 function parseInput() {
     const leftList: number[] = []
