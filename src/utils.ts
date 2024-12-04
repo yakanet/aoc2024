@@ -4,6 +4,9 @@ export const loadFile = (name: string): string => fs.readFileSync(`./src/${name}
 
 export const loadFileByLine = (name: string) => loadFile(name).split(/\r?\n/);
 
+export const loadFileGrid = (name: string) => loadFileByLine(name).map(line => line.split(''));
+
+
 type Repeat<T, C extends number, Result extends any[] = [], Counter extends any[] = []> = Counter['length'] extends C ?
     Result :
     Repeat<T, C, [...Result, T], [...Counter, unknown]>
@@ -16,4 +19,8 @@ export function wait(ms: number) {
     return new Promise<void>((resolve) => {
         setTimeout(() => resolve(), ms)
     })
+}
+
+export function isInRange(value: number, min: number, max: number) {
+    return value>=min && value<max;
 }
