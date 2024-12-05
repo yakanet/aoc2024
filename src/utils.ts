@@ -1,11 +1,18 @@
+import process from 'node:process';
 import fs from 'node:fs'
 
-export const loadFile = (name: string): string => fs.readFileSync(`./src/${name}.txt`, { encoding: 'utf-8' });
+function getFile() {
+    if (process.argv.length === 3) {
+        return process.argv[2]
+    }
+    throw new Error('Need to define the input file');
+}
 
-export const loadFileByLine = (name: string) => loadFile(name).split(/\r?\n/);
+export const loadFile = (name?: string): string => fs.readFileSync(name ? `./src/${name}.txt` : getFile(), { encoding: 'utf-8' });
 
-export const loadFileGrid = (name: string) => loadFileByLine(name).map(line => line.split(''));
+export const loadFileByLine = (name?: string) => loadFile(name).split(/\r?\n/);
 
+export const loadFileGrid = (name?: string) => loadFileByLine(name).map(line => line.split(''));
 
 type Repeat<T, C extends number, Result extends any[] = [], Counter extends any[] = []> = Counter['length'] extends C ?
     Result :
@@ -21,6 +28,4 @@ export function wait(ms: number) {
     })
 }
 
-export function isInRange(value: number, min: number, max: number) {
-    return value>=min && value<max;
-}
+export const isInRange = (value: number, min: number, max: number) => value >= min && value < max;
