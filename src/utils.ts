@@ -28,4 +28,8 @@ export function wait(ms: number) {
     })
 }
 
+export function mod(value: number, modulo: number) {
+    return (value + modulo) % modulo;
+}
+
 export const isInRange = (value: number, min: number, max: number) => value >= min && value < max;
