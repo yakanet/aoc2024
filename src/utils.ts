@@ -8,7 +8,7 @@ function getFile() {
     throw new Error('Need to define the input file');
 }
 
-export const loadFile = (name?: string): string => fs.readFileSync(name ? `./src/${name}.txt` : getFile(), { encoding: 'utf-8' });
+export const loadFile = (name?: string): string => fs.readFileSync(name ? `./src/${name}.txt` : getFile(), {encoding: 'utf-8'});
 
 export const loadFileByLine = (name?: string) => loadFile(name).split(/\r?\n/);
 
@@ -31,5 +31,7 @@ export function wait(ms: number) {
 export function mod(value: number, modulo: number) {
     return (value + modulo) % modulo;
 }
+
+export const sum = (values: number[]) => values.reduce((acc, v) => acc + v, 0);
 
 export const isInRange = (value: number, min: number, max: number) => value >= min && value < max;
